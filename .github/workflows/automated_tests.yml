@@ -62,6 +62,14 @@ jobs:
           HTTP_CREDENTIALS_USERNAME: ${{secrets.HTTP_CREDENTIALS_USERNAME}}
           HTTP_CREDENTIALS_PASSWORD: ${{secrets.HTTP_CREDENTIALS_PASSWORD}}
         run: npx playwright test --update-snapshots
+      - name: Commit and Push Changes
+        run: |
+          git config --global --add safe.directory /__w/aqa-playwright/aqa-playwright
+          git config --global user.email "maks@test.com"
+          git config --global user.name "Maks Butusov"
+          git add .
+          git commit -m "Add new_file.txt"
+          git push
       - name: "Run tests"
         env:
           BASE_URL: 'https://qauto.forstudy.space/'
